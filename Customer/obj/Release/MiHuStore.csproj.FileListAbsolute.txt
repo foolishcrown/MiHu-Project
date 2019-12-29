@@ -1,8 +1,0 @@
-D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\bin\MuHiStore.dll.config
-D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\bin\MuHiStore.dll
-D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\bin\MuHiStore.pdb
-D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\obj\Release\MiHuStore.csprojAssemblyReference.cache
-D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\obj\Release\MiHuStore.csproj.CoreCompileInputs.cache
-D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\obj\Release\MiHuStore.csproj.CopyComplete
-D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\obj\Release\MuHiStore.dll
-D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\obj\Release\MuHiStore.pdb
