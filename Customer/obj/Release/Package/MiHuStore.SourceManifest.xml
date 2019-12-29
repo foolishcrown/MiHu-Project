@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\obj\Release\Package\PackageTmp" />
+  <setAcl path="D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\SE130336\CN5\PRN292\Final Project\Cus\MuHiStore\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

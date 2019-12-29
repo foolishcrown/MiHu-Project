@@ -1,0 +1,56 @@
+﻿@using MiHuStore.Models.Product
+@using MiHuStore.Models.Customer
+@{
+    ViewBag.Title = "Search View";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+}
+
+
+<div class="colorlib-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                <h2>Search Result</h2>
+            </div>
+        </div>
+        <div class="row row-pb-md">
+
+            @{
+                List<ProductDTO> result = ViewData.Model;
+                if (result != null && result.Count != 0)
+                {
+                    for (int i = 0; i < result.Count; i++)
+                    {
+                        if (i == 4)
+                        {
+                            <div class="w-100"></div>
+                        }
+
+                        <div class="col-lg-3 mb-4 text-center">
+
+                            <div class="product-entry border">
+                                <a href="~/Home/ViewProduct?PreviousPage=3&ProductID=@result[i].ID" class="prod-img">
+                                    <img src="@result[i].Image" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                </a>
+                                <div class="desc">
+                                    <h2>@result[i].NameProduct</h2>
+                                    <span class="price">$@result[i].Price</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    }
+                }
+            }
+
+
+
+
+            <div class="w-100"></div>
+        </div>
+        
+    </div>
+</div>

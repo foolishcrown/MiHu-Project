@@ -1,0 +1,145 @@
+﻿@using MiHuStore.Models.Product
+@using MiHuStore.Models.Customer
+
+@{
+    ViewBag.Title = "MiHu Home";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+}
+
+
+
+<aside id="colorlib-hero">
+    <div class="flexslider">
+        <ul class="slides">
+            <li style="background-image: url(/images/img_bg_4.jpg);">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6 offset-sm-3 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <div class="desc" style="background-color: rgba(0,0,0,0.3)">
+                                    <h1 class="head-1">Angel</h1>
+                                    <h2 class="head-2">Clothes</h2>
+                                    <h2 class="head-3">Collection</h2>
+                                    <p class="category"><span>New trending Clothes</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li style="background-image: url(/images/img_bg_5.jpg);">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6 offset-sm-3 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <div class="desc" style="background-color: rgba(0,0,0,0.3)">
+                                    <h1 class="head-1">Huge</h1>
+                                    <h2 class="head-2">Sale UP To</h2>
+                                    <h2 class="head-3"><strong class="font-weight-bold">50%</strong> Off</h2>
+                                    <p class="category"><span>BiG Sale</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li style="background-image: url(/images/img_bg_6.jpg);">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6 offset-sm-3 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <div class="desc" style="background-color: rgba(0,0,0,0.3)">
+                                    <h1 class="head-1">New</h1>
+                                    <h2 class="head-2">Arrival</h2>
+                                    <h2 class="head-3">up to <strong class="font-weight-bold">30%</strong> off</h2>
+                                    <p class="category"><span>New stylish</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li style="background-image: url(/images/img-bg_7.jpg);">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6 offset-sm-3 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <div class="desc" style="background-color: rgba(0,0,0,0.3)">
+                                    <h1 class="head-1">New </h1>
+                                    <h2 class="head-2">Sale UP To</h2>
+                                    <h2 class="head-3"><strong class="font-weight-bold">50%</strong> Off</h2>
+                                    <p class="category"><span>BiG Sale</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+
+
+
+
+<div class="colorlib-product">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                <h2>@TempData["ISHOMEPAGE"]</h2>
+            </div>
+        </div>
+        <div class="row row-pb-md">
+
+            @{
+                List<ProductDTO> result = ViewData.Model;
+                if (result != null && result.Count != 0)
+                {
+                    for (int i = 0; i < result.Count; i++)
+                    {
+                        if (i == 4)
+                        {
+                            <div class="w-100"></div>
+                        }
+
+                        <div class="col-lg-3 mb-4 text-center">
+                            <!---->
+                            <div class="product-entry border">
+                                <a href="~/Home/ViewProduct?ProductID=@result[i].ID&PreviousPage=1" class="prod-img">
+                                    <img src="@result[i].Image" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                </a>
+                                <div class="desc">
+                                    <h2>@result[i].NameProduct</h2>
+                                    <span class="price">$@result[i].Price</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    }
+                }
+                else
+                {
+                        <h2 class="col-lg-12 mb-12 justify-content-center row">Category is empty</h2>
+                    
+                }
+            }
+
+
+
+
+            <div class="w-100"></div>
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+

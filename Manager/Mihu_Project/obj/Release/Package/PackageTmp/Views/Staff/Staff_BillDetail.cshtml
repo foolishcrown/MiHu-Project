@@ -1,0 +1,102 @@
+﻿@model Mihu_Project.Models.Bill
+@using Mihu_Project.Models
+@using System.Data
+
+@{
+    ViewBag.Title = "Staff_BillDetail";
+    Layout = "~/Views/Shared/_StaffLayout.cshtml";
+}
+
+
+
+<div>
+    <h4>Bill Detail</h4>
+    <hr />
+
+    <table class="table table-bordered">
+        <tr>
+            <th scope="row">@Html.DisplayNameFor(model => model.OrderID)</th>
+            <td>@Html.DisplayFor(model => model.OrderID)</td>
+        </tr>
+        <tr>
+            <th scope="row">@Html.DisplayNameFor(model => model.CustomerID)</th>
+            <td>@Html.DisplayFor(model => model.CustomerID)</td>
+        </tr>
+        <tr>
+            <th scope="row">@Html.DisplayNameFor(model => model.CreatedDate)</th>
+            <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+        </tr>
+        <tr>
+            <th scope="row">@Html.DisplayNameFor(model => model.StaffID)</th>
+            <td>@Html.DisplayFor(model => model.StaffID)</td>
+        </tr>
+
+
+    </table>
+    <br />
+    @{
+        BillDetailDB detailDB = new BillDetailDB();
+        DataTable dtDetail = detailDB.GetListDetail(Model.OrderID);
+    }
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{float subTotal = 0;}
+        @for (int i = 0; i < dtDetail.Rows.Count; i++)
+        {
+            <tr>
+                <td>@dtDetail.Rows[i][0]</td>
+                <td>@dtDetail.Rows[i][1]</td>
+                <td>@dtDetail.Rows[i][2]</td>
+                <td>@dtDetail.Rows[i][3]</td>
+                <td>@(float.Parse(dtDetail.Rows[i][2].ToString()) * float.Parse(dtDetail.Rows[i][3].ToString())) </td>
+            </tr>
+            subTotal+= float.Parse(dtDetail.Rows[i][2].ToString()) * float.Parse(dtDetail.Rows[i][3].ToString());
+        }
+        <tr></tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="4">Current Total</th>
+            <th>@subTotal</th>
+        </tr>
+        <tr>
+            <th colspan="4">@Html.DisplayNameFor(model => model.DiscountValue)</th>
+            <th>
+                @*@Html.DisplayFor(model => model.DiscountValue)*@
+
+                @(Model.DiscountValue * 100)%
+            </th>
+        </tr>
+        <tr>
+            <th colspan="4">@Html.DisplayNameFor(model => model.TotalPrice)</th>
+            <th>@Html.DisplayFor(model => model.TotalPrice)</th>
+        </tr>
+    </tfoot>
+</table>
+
+
+</div>
+<p>
+    @{ string state;
+        switch (Model.State)
+        {
+            case 0: state = "Staff_BillWaiting"; break;
+            case 1: state = "Staff_BillInProcess"; break;
+            case 2: state = "Staff_BillSuccess"; break;
+            case 3: state = "Staff_BillFail"; break;
+            default:
+                state = "ERROR";
+                break;
+        } }
+    @Html.ActionLink("Back to List", state)
+</p>

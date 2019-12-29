@@ -1,0 +1,195 @@
+﻿@using MiHuStore.Models.Cart
+@using MiHuStore.Models.Customer
+
+@{
+    ViewBag.Title = "Cofirm View";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+}
+@{
+    CustomerDTO cus = (CustomerDTO)Session["CUSTOMER"];
+}
+<div style="width:100%; height:auto; padding-left:125px; padding-top:40px">
+    <span style="font-weight: bold;">Username:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@cus.Username <br />
+    <span style="font-weight: bold" ;>Name:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@cus.CustomerName <br />
+    <span style="font-weight: bold" ;>Address:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@cus.Address<br />
+    <span style="font-weight: bold" ;>Email:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@cus.Email<br />
+    <span style="font-weight: bold" ;>Telephone:</span>&nbsp;&nbsp;&nbsp;@cus.Phone<br />
+
+
+</div>
+<br />
+<div class="colorlib-product" style="padding-top:5px">
+
+    <div class="container">
+
+        <!---->
+        @{
+            List<int> listQuantity = (List<int>)Session["listQuantity"];
+
+            float discount = 0;
+            float moneyDiscount = 0;
+            List<Item> list = null;
+            if (Session["Discount"] != null)
+            {
+                discount = (float)Session["Discount"];
+            }
+            CartItem c = (CartItem)Session["CART"];
+            if (c != null)
+            {
+
+                list = c.Cart;
+
+
+                float totalMoney = 0;
+                <div class="product-name d-flex">
+                    <div class="one-forth text-left px-4">
+                        <span>Product Details</span>
+                    </div>
+                    <div class="one-eight text-center">
+                        <span>Price</span>
+                    </div>
+                    <div class="one-eight text-center">
+                        <span>Quantity</span>
+                    </div>
+                    <div class="one-eight text-center">
+                        <span>Total</span>
+                    </div>
+
+                </div>
+
+                for (int i = 0; i < list.Count; i++)
+                {
+
+
+
+                    <div class="row row-pb-lg">
+                        <div class="col-md-12">
+
+                            <div class="product-cart d-flex">
+                                <div class="one-forth">
+
+                                    <div class="product-img" style="background-image: url(@list[i].Product.Image);">
+                                    </div>
+
+                                    <div class="display-tc">
+                                        <h3>@list[i].Product.NameProduct</h3>
+                                    </div>
+                                </div>
+                                <div class="one-eight text-center">
+                                    <div class="display-tc">
+                                        <span class="price">$@list[i].Product.Price</span>
+                                    </div>
+                                </div>
+
+                                <div class="one-eight text-center">
+                                    <div class="display-tc">
+
+                                        <span>@list[i].Quantity</span>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="one-eight text-center">
+                                    <div class="display-tc">
+                                        <span class="price">
+                                            @{
+
+
+                                                float total = list[i].Quantity * list[i].Product.Price;
+                                                totalMoney += total;
+                                            }
+                                            $@total
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="one-eight text-center">
+                                    <div class="display-tc">
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+
+                <!--Coupon-->
+                <div class="row row-pb-lg">
+                    <div class="col-md-12">
+                        <div class="total-wrap">
+                            <div class="row">
+                                <div class="col-sm-8">
+
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    <div class="total">
+                                        <div class="sub">
+                                            <p><span>Subtotal:</span> <span>$@totalMoney</span></p>
+                                            <p><span>Delivery:</span> <span>$0.00</span></p>
+                                            <p>
+                                                <span>Discount:</span> <span>
+                                                    @{
+
+                                                        if (discount != 0)
+                                                        {
+                                                            moneyDiscount = totalMoney * discount;
+                                                        }
+                                                    }$@moneyDiscount
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="grand-total">
+                                            <p>
+                                                <span><strong>Total:</strong></span><span>
+                                                    @{
+
+                                                        float finallyMoney = totalMoney - moneyDiscount;
+
+                                                    }$@finallyMoney
+                                                </span>
+                                            </p>
+
+
+                                        </div>
+                                        <form action="~/Home/Confirm" id="formConfirm" method="post">
+
+                                            <input type="hidden" name="TotalPrice" value="@finallyMoney"/>
+                                            <input type="submit" value="Confirm" onclick="return myConfirm();" />
+
+                                        </form>
+                                        <script>
+                                            function myConfirm() {
+                                                
+                                                var c = confirm("Are you sure to confirm it ? ");
+                                                if (c == true) {
+                                                    return true;
+                                                } else {
+                                                    return false;
+                                                }
+                                            }
+
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+
+
+        }
+
+
+
+
+
+    </div>
+</div>
+
+
