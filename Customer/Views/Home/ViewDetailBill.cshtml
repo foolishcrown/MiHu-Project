@@ -1,0 +1,104 @@
+﻿@using MiHuStore.Models.Cart
+@using MiHuStore.Models.Customer
+@using MiHuStore.Models.Order
+
+@{
+    ViewBag.Title = "Detail Bill";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+}
+
+<div class="colorlib-product" style="padding-top: 40px">
+    <div class="container">
+
+        <!---->
+        @{
+            List<OrderDetailDTO> listBillDetail = ViewBag.ListOrderDetail;
+            float discount = ViewBag.Discount * 100;
+            string state = ViewBag.State;
+
+
+
+
+
+            <div class="product-name d-flex">
+                <div class="one-forth text-left px-4">
+                    <span>Bill Details (Discount: @discount %)</span>
+                </div>
+                <div class="one-eight text-center">
+                    <span>Unit Price</span>
+                </div>
+                <div class="one-eight text-center">
+                    <span>Quantity</span>
+                </div>
+
+            </div>
+            for (int i = 0; i < listBillDetail.Count; i++)
+            {
+                <div class="row row-pb-lg" style="height: 100px">
+                    <div class="col-md-12">
+
+                        <div class="product-cart d-flex">
+                            <div class="one-forth">
+
+                                <div class="display-tc">
+                                    <h3>@listBillDetail[i].ProductName</h3>
+                                </div>
+                            </div>
+                            <div class="one-eight text-center">
+                                <div class="display-tc">
+                                    <span class="price">$@listBillDetail[i].UnitPrice</span>
+                                </div>
+                            </div>
+
+                            <div class="one-eight text-center">
+                                <div class="display-tc">
+
+
+
+
+                                    <span class="price"> @listBillDetail[i].Quantity</span>
+
+
+
+                                </div>
+                            </div>
+                            <div class="one-eight text-center">
+                                <div class="display-tc">
+                                    <span class="price">
+
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="one-eight text-center">
+                                <div class="display-tc">
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        <hr />
+        @:State: @state
+
+
+            //<!--Coupon-->
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+    </div>
+</div>
+
+
