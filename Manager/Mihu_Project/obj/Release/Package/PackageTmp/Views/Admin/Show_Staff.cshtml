@@ -1,0 +1,61 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Show_Staff";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="../Admin">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Show Staff List</li>
+</ol>
+
+<!-- DataTables Example -->
+@TempData["ERROR"]
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Staff
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Fullname</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Username</th>
+                        <th>Fullname</th>
+                        <th>Function</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @for (int i = 0; i < Model.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td class="align-middle">@Model.Rows[i][0]</td>
+                            <td class="align-middle">@Model.Rows[i][1]</td>
+                            <td class="align-middle text-center" style="width:200px;">
+
+                                <a href="../Admin/Delete_Staff?USERNAME=@Model.Rows[i][0]" onclick="return confirm('Are you sure to Delete @Model.Rows[i][0]')"><input type="button" name="btAction" value="Delete"></a>
+                                <a href="../Admin/Detail_Staff?USERNAME=@Model.Rows[i][0]"><input type="button" name="btAction" value="Detail"></a>
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+
+

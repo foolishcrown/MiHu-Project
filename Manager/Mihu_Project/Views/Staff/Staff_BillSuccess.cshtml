@@ -1,0 +1,61 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Staff_BillSuccess";
+    Layout = "~/Views/Shared/_StaffLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Order Bill</a>
+    </li>
+    <li class="breadcrumb-item active">Success</li>
+</ol>
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Customer ID</th>
+                        <th>Order Date</th>
+                        <th>Complete Date</th>
+                        <th>Total Price</th>
+                        <th>View Detail</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Customer ID</th>
+                        <th>Order Date</th>
+                        <th>Complete Date</th>
+                        <th>Total Price</th>
+                        <th>View Detail</th>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @for (int i = 0; i < Model.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model.Rows[i][0]</td>
+                            <td>@Model.Rows[i][1]</td>
+                            <td>@Model.Rows[i][2]</td>
+                            <td>@Model.Rows[i][4]</td>
+                            <td>@Model.Rows[i][3]</td>
+                            <td>@Html.ActionLink("Details", "Staff_BillDetail", new { @BillID = @Model.Rows[i][0] })</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+
